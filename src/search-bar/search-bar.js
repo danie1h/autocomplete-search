@@ -21,7 +21,7 @@ export const SearchBar = (props) => {
     let productNameMatches = ''
     let searchPattern = new RegExp(`^${props.searchInput}`, `i`)
 
-    if(props.searchInput && props.filterOn === `ALL`) {
+    if(props.searchInput && props.filterOn === `All`) {
       productNameMatches = props.productList.filter( (product, index) => searchPattern.test(product.name) === true).map( (product, index) => {
         return (<option key={index} value={product.name} />)
       })
