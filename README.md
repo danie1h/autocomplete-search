@@ -22,7 +22,7 @@ Based on a users search criteria, the company name, resource(url) and type will 
 
 ## Demo
 
-A live demo of the project can be viewed here (update me with github.io url).
+A live demo of the project can be viewed [here](https://danie1h.github.io/autocomplete-search/).
 
 ## Tech-Stack
 
