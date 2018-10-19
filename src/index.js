@@ -19,8 +19,6 @@ const productListDeduped = data.products
       }
   })
 
-console.log(productListDeduped)
-
 ReactDOM.render(<App productList={productListDeduped}/>, document.getElementById('root'));
 
 serviceWorker.unregister();

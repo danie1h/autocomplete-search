@@ -11,7 +11,12 @@ import './search-results.css'
   * - productList: list of all products and info
   */
 export const SearchResults = (props) => {
-    let matchingProduct = props.productList.filter( (product) => product.name === props.searchInput);
+    let matchingProduct = []
+    if(props.filterOn === 'All') {
+      matchingProduct = props.productList.filter( (product) => product.name === props.searchInput)
+    } else {
+      matchingProduct = props.productList.filter( (product) => product.name === props.searchInput && product.type === props.filterOn)
+    }
 
     return (
       <div className='search-results'>

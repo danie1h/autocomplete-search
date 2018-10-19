@@ -22,6 +22,7 @@ import { SearchResults } from './search-results/search-results.js'
   * - handleSubmit: flag to check if user selected submit
   * Parameter passed to SearchResults:
   * - searchInput: text the user enterred in the search bar
+  * - filterOn: filter product list based on filter type
   * - productList: list of all products and info
   */
 class App extends Component {
@@ -74,7 +75,7 @@ class App extends Component {
           <SearchFilter onChange={this.updateFilterType} productTypes={['All', ...this.props.productList.map(product => product.type).filter( (type, index, self) => self.indexOf(type) === index ).sort()]}/>
           <SearchBar searchInput={this.state.searchInput} filterOn={this.state.filterType} handleChange={this.updateSearchInput} productList={this.props.productList} handleSubmit={this.handleSubmit}/>
         </div>
-        { (this.state.submitted) ? <SearchResults searchInput={this.state.searchInput} productList={this.props.productList}/> : '' }
+        { (this.state.submitted) ? <SearchResults searchInput={this.state.searchInput} filterOn={this.state.filterType} productList={this.props.productList}/> : '' }
       </div>
     )
   }
