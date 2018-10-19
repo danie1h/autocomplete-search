@@ -7,7 +7,19 @@ import * as serviceWorker from './serviceWorker';
 
 
 /** de-duped and sorts data on product.name from 475 records to 319 */
-const productListDeduped = data.products.filter( (product, index, self) => index === self.findIndex( productDupe => product.name === productDupe.name) )
+/** modify the product type to letter case and swith '_' with spaces */
+const productListDeduped = data.products
+  .filter( (product, index, self) => index === self.findIndex( productDupe => product.name === productDupe.name) )
+  .map( product => {
+    return {
+      name: product.name,
+      url: product.url,
+      type: product.type.replace(/_/, ' ')
+        .replace(/([A-Z]+)/g, match =>  `${match.charAt(0)}${match.slice(1).toLowerCase()}` )
+      }
+  })
+
+console.log(productListDeduped)
 
 ReactDOM.render(<App productList={productListDeduped}/>, document.getElementById('root'));
 

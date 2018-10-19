@@ -32,7 +32,7 @@ class App extends Component {
       /** content entered in the search bar */
       searchInput: '',
       /** type of institute user would like to filter on */
-      filterType: 'ALL',
+      filterType: 'All',
       /** track if the user submitted the search */
       submitted: false
     }
@@ -67,12 +67,11 @@ class App extends Component {
   }
 
   render () {
-    console.log(this.state);
     return (
       <div className='auto-search-app'>
         <h1>Financial Instituton Search</h1>
         <div className='search-section'>
-          <SearchFilter onChange={this.updateFilterType} productTypes={['ALL', ...this.props.productList.map(product => product.type).filter( (type, index, self) => self.indexOf(type) === index ).sort()]}/>
+          <SearchFilter onChange={this.updateFilterType} productTypes={['All', ...this.props.productList.map(product => product.type).filter( (type, index, self) => self.indexOf(type) === index ).sort()]}/>
           <SearchBar searchInput={this.state.searchInput} filterOn={this.state.filterType} handleChange={this.updateSearchInput} productList={this.props.productList} handleSubmit={this.handleSubmit}/>
         </div>
         { (this.state.submitted) ? <SearchResults searchInput={this.state.searchInput} productList={this.props.productList}/> : '' }
