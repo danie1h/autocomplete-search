@@ -1,0 +1,18 @@
+.auto-search-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-section {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+@media screen and (min-width: 500px){
+  .search-section {
+    flex-direction: row;
+    align-items: center;
+  }
+}
