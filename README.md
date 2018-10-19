@@ -40,4 +40,4 @@ For this project I decided to undergo an agile methodology where I planned and t
 
 2. Dropdown does not update. Details: If there is one character entered in the search bar and the user presses backspace, the dropdown is still displayed
 
-3. Filter options are all in uppercase and/or contain '_'.
+3. ~~Filter options are all in uppercase and/or contain '_'.~~
