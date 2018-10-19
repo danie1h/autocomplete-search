@@ -19,6 +19,7 @@ import { SearchResults } from './search-results/search-results.js'
   * - filterOn: filter product list based on filter type
   * - onChange: handles changes on the search bar
   * - searchInput: text the user enterred in the search bar
+  * - escapedSearchInput: text the user enterred in the search bar with escapped char
   * - handleSubmit: flag to check if user selected submit
   * Parameter passed to SearchResults:
   * - searchInput: text the user enterred in the search bar
@@ -45,9 +46,9 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  /** When input is modified, update the state searchInput and set submitted to false*/
+  /** When input is modified, update the state searchInput, escapedSerachInput and set submitted to false*/
   updateSearchInput(event) {
-    let str = event.target.value.replace(/\(/, '\\(').replace(/\)/, '\\)')
+    let str = event.target.value.replace(/\(/g, '\\(').replace(/\)/g, '\\)')
 
     this.setState({
       searchInput: event.target.value,

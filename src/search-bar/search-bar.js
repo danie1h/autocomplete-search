@@ -15,11 +15,13 @@ import './search-bar.css'
   * - filterOn: filter product list based on filter type
   * - onChange: handles changes on the search bar
   * - searchInput: text the user enterred in the search bar
+  * - escapedSearchInput: text the user enterred in the search bar with escapped char
   * - handleSubmit: flag to check if user selected submit
   */
 export const SearchBar = (props) => {
-    let productNameMatches = ''
+    let productNameMatches = []
     let searchPattern = new RegExp(`^${props.escapedSearchInput}`, `i`)
+    console.log(props)
 
     if(props.escapedSearchInput && props.filterOn === `All`) {
       productNameMatches = props.productList.filter( (product, index) => searchPattern.test(product.name) === true).map( (product, index) => {
@@ -30,9 +32,10 @@ export const SearchBar = (props) => {
         return (<option key={index} value={product.name} />)
       })
     }else {
-      productNameMatches = ''
+      productNameMatches = []
     }
 
+    console.log(productNameMatches);
     return (
       <div className='search-bar'>
         <form className='search-bar-contents' onSubmit={props.handleSubmit}>
