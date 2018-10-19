@@ -32,6 +32,8 @@ class App extends Component {
     this.state = {
       /** content entered in the search bar */
       searchInput: '',
+      /** content entered in the search bar and escaped parenthesis */
+      escapedSearchInput: '',
       /** type of institute user would like to filter on */
       filterType: 'All',
       /** track if the user submitted the search */
@@ -45,8 +47,11 @@ class App extends Component {
 
   /** When input is modified, update the state searchInput and set submitted to false*/
   updateSearchInput(event) {
+    let str = event.target.value.replace(/\(/, '\\(').replace(/\)/, '\\)')
+
     this.setState({
       searchInput: event.target.value,
+      escapedSearchInput: str,
       submitted: false
     })
   }
@@ -73,7 +78,7 @@ class App extends Component {
         <h1>Financial Instituton Search</h1>
         <div className='search-section'>
           <SearchFilter onChange={this.updateFilterType} productTypes={['All', ...this.props.productList.map(product => product.type).filter( (type, index, self) => self.indexOf(type) === index ).sort()]}/>
-          <SearchBar searchInput={this.state.searchInput} filterOn={this.state.filterType} handleChange={this.updateSearchInput} productList={this.props.productList} handleSubmit={this.handleSubmit}/>
+          <SearchBar searchInput={this.state.searchInput} escapedSearchInput={this.state.escapedSearchInput} filterOn={this.state.filterType} handleChange={this.updateSearchInput} productList={this.props.productList} handleSubmit={this.handleSubmit}/>
         </div>
         { (this.state.submitted) ? <SearchResults searchInput={this.state.searchInput} filterOn={this.state.filterType} productList={this.props.productList}/> : '' }
       </div>

@@ -36,7 +36,7 @@ For this project I decided to undergo an agile methodology where I planned and t
 
 ## Known Bugs
 
-1. Searching with parenthesis. Details: If a user enters a '(' or ')' an error is thrown
+1. ~~Searching with parenthesis. Details: If a user enters a '(' or ')' an error is thrown~~
 
 2. Dropdown does not update. Details: If there is one character entered in the search bar and the user presses backspace, the dropdown is still displayed
 

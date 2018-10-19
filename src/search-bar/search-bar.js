@@ -19,13 +19,13 @@ import './search-bar.css'
   */
 export const SearchBar = (props) => {
     let productNameMatches = ''
-    let searchPattern = new RegExp(`^${props.searchInput}`, `i`)
+    let searchPattern = new RegExp(`^${props.escapedSearchInput}`, `i`)
 
-    if(props.searchInput && props.filterOn === `All`) {
+    if(props.escapedSearchInput && props.filterOn === `All`) {
       productNameMatches = props.productList.filter( (product, index) => searchPattern.test(product.name) === true).map( (product, index) => {
         return (<option key={index} value={product.name} />)
       })
-    } else if(props.searchInput && props.filterOn !== `ALL`) {
+    } else if(props.escapedSearchInput && props.filterOn !== `ALL`) {
       productNameMatches = props.productList.filter( (product, index) => searchPattern.test(product.name) === true && product.type === props.filterOn).map( (product, index) => {
         return (<option key={index} value={product.name} />)
       })
