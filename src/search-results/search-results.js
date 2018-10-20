@@ -20,13 +20,18 @@ export const SearchResults = (props) => {
 
     return (
       <div className='search-results'>
+        <h2>Search Results</h2>
         { (matchingProduct.length === 0) ?
             <p>Product does not exist. Please search for another product.</p>
             :
-            <div id='successful-results'>
-            <p><strong>Institue:</strong> {matchingProduct[0].name}</p>
-            <p><strong>Type:</strong> {matchingProduct[0].type}</p>
-            <p><strong>URL:</strong> <a href={matchingProduct[0].url} target='_blank' rel='noopener noreferrer'>{matchingProduct[0].url}</a></p>
+            <div className='successful-results'>
+              <ul>
+                <li>
+                  <p className="result-name"><a href={matchingProduct[0].url} target='_blank' rel='noopener noreferrer'>{matchingProduct[0].name}</a></p>
+                  <p className="result-type"><strong>Institution Type:</strong> {matchingProduct[0].type}</p>
+                  <p className="result-url">{matchingProduct[0].url}</p>
+                </li>
+              </ul>
             </div>
         }
       </div>

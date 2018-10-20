@@ -1,1 +1,20 @@
+.successful-results ul {
+  padding-left: 0;
+}
 
+.successful-results li {
+  list-style-type: none;
+}
+
+.successful-results li p {
+  margin: 0;
+}
+
+.result-type {
+  font-size: .8em;
+}
+
+.result-url {
+  font-size: .8em;
+  color: green;
+}
