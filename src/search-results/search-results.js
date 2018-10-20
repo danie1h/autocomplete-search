@@ -8,29 +8,47 @@ import './search-results.css'
   *
   * Properties from App:
   * - searchInput: text the user enterred in the search bar
+  * - escapedSearchInput: text the user enterred in the search bar with escapped char
+  * - filterOn: filter product list based on filter type
   * - productList: list of all products and info
   */
 export const SearchResults = (props) => {
-    let matchingProduct = []
-    if(props.filterOn === 'All') {
-      matchingProduct = props.productList.filter( (product) => product.name === props.searchInput)
-    } else {
-      matchingProduct = props.productList.filter( (product) => product.name === props.searchInput && product.type === props.filterOn)
+    let productMatchedResults = []
+    let searchResultsPattern = new RegExp(`^${props.escapedSearchInput}`, `i`)
+
+    if(props.filterOn === 'All' && props.searchInput.length > 0) {
+      productMatchedResults = props.productList.filter( product => searchResultsPattern.test(product.name) === true)
+       .map( (product, index) => {
+         return (
+           <li key={index}>
+             <p className="result-name"><a href={product.url} target='_blank' rel='noopener noreferrer'>{product.name}</a></p>
+             <p className="result-type"><strong>Institution Type:</strong> {product.type}</p>
+             <p className="result-url">{product.url}</p>
+           </li>
+         )
+       })
+    } else if (props.escapedSearchInput && props.filterOn !== `ALL` && props.searchInput.length > 0) {
+      productMatchedResults = props.productList.filter( product => searchResultsPattern.test(product.name) === true && product.type === props.filterOn)
+          .map( (product, index) => {
+            return (
+              <li key={index}>
+                <p className="result-name"><a href={product.url} target='_blank' rel='noopener noreferrer'>{product.name}</a></p>
+                <p className="result-type"><strong>Institution Type:</strong> {product.type}</p>
+                <p className="result-url">{product.url}</p>
+              </li>
+            )
+          })
     }
 
     return (
       <div className='search-results'>
         <h2>Search Results</h2>
-        { (matchingProduct.length === 0) ?
+        { (productMatchedResults.length === 0) ?
             <p>Product does not exist. Please search for another product.</p>
             :
             <div className='successful-results'>
               <ul>
-                <li>
-                  <p className="result-name"><a href={matchingProduct[0].url} target='_blank' rel='noopener noreferrer'>{matchingProduct[0].name}</a></p>
-                  <p className="result-type"><strong>Institution Type:</strong> {matchingProduct[0].type}</p>
-                  <p className="result-url">{matchingProduct[0].url}</p>
-                </li>
+                {productMatchedResults}
               </ul>
             </div>
         }

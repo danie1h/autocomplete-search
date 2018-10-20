@@ -1,9 +1,14 @@
+.search-results h2 {
+  color: gray;
+}
+
 .successful-results ul {
   padding-left: 0;
 }
 
 .successful-results li {
   list-style-type: none;
+  margin: 1em;
 }
 
 .successful-results li p {
@@ -17,4 +22,8 @@
 .result-url {
   font-size: .8em;
   color: green;
+}
+
+.successful-results li:hover {
+  background-color: #f6f6f6
 }

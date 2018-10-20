@@ -23,6 +23,7 @@ import { SearchResults } from './search-results/search-results.js'
   * - handleSubmit: flag to check if user selected submit
   * Parameter passed to SearchResults:
   * - searchInput: text the user enterred in the search bar
+  * - escapedSearchInput: text the user enterred in the search bar with escapped char
   * - filterOn: filter product list based on filter type
   * - productList: list of all products and info
   */
@@ -48,7 +49,8 @@ class App extends Component {
 
   /** When input is modified, update the state searchInput, escapedSerachInput and set submitted to false*/
   updateSearchInput(event) {
-    let str = event.target.value.replace(/\(/g, '\\(').replace(/\)/g, '\\)')
+    // escape (, ), +, *
+    let str = event.target.value.replace(/\(/g, '\\(').replace(/\)/g, '\\)').replace(/\*/g, '\\*').replace(/\+/g, '\\+')
 
     this.setState({
       searchInput: event.target.value,
@@ -81,7 +83,7 @@ class App extends Component {
           <SearchFilter onChange={this.updateFilterType} productTypes={['All', ...this.props.productList.map(product => product.type).filter( (type, index, self) => self.indexOf(type) === index ).sort()]}/>
           <SearchBar searchInput={this.state.searchInput} escapedSearchInput={this.state.escapedSearchInput} filterOn={this.state.filterType} handleChange={this.updateSearchInput} productList={this.props.productList} handleSubmit={this.handleSubmit}/>
         </div>
-        { (this.state.submitted) ? <SearchResults searchInput={this.state.searchInput} filterOn={this.state.filterType} productList={this.props.productList}/> : '' }
+        { (this.state.submitted) ? <SearchResults searchInput={this.state.searchInput} escapedSearchInput={this.state.escapedSearchInput} filterOn={this.state.filterType} productList={this.props.productList}/> : '' }
       </div>
     )
   }
