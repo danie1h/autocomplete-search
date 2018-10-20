@@ -21,21 +21,19 @@ import './search-bar.css'
 export const SearchBar = (props) => {
     let productNameMatches = []
     let searchPattern = new RegExp(`^${props.escapedSearchInput}`, `i`)
-    console.log(props)
 
     if(props.escapedSearchInput && props.filterOn === `All`) {
-      productNameMatches = props.productList.filter( (product, index) => searchPattern.test(product.name) === true).map( (product, index) => {
+      productNameMatches = props.productList.filter( (product, index) => searchPattern.test(product.name) === true).filter( (product, index) => index < 10 ).map( (product, index) => {
         return (<option key={index} value={product.name} />)
       })
     } else if(props.escapedSearchInput && props.filterOn !== `ALL`) {
-      productNameMatches = props.productList.filter( (product, index) => searchPattern.test(product.name) === true && product.type === props.filterOn).map( (product, index) => {
+      productNameMatches = props.productList.filter( (product, index) => searchPattern.test(product.name) === true && product.type === props.filterOn).filter( (product, index) => index < 10 ).map( (product, index) => {
         return (<option key={index} value={product.name} />)
       })
-    }else {
+    } else {
       productNameMatches = []
     }
 
-    console.log(productNameMatches);
     return (
       <div className='search-bar'>
         <form className='search-bar-contents' onSubmit={props.handleSubmit}>
