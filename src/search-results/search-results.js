@@ -16,7 +16,7 @@ export const SearchResults = (props) => {
     let productMatchedResults = []
     let searchResultsPattern = new RegExp(`^${props.escapedSearchInput}`, `i`)
 
-    if(props.filterOn === 'All' && props.searchInput.length > 0) {
+    if(props.escapedSearchInput && props.filterOn === 'All') {
       productMatchedResults = props.productList.filter( product => searchResultsPattern.test(product.name) === true)
        .map( (product, index) => {
          return (
@@ -27,7 +27,7 @@ export const SearchResults = (props) => {
            </li>
          )
        })
-    } else if (props.escapedSearchInput && props.filterOn !== `ALL` && props.searchInput.length > 0) {
+    } else if (props.escapedSearchInput && props.filterOn !== `ALL`) {
       productMatchedResults = props.productList.filter( product => searchResultsPattern.test(product.name) === true && product.type === props.filterOn)
           .map( (product, index) => {
             return (

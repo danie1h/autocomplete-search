@@ -10,6 +10,7 @@ import * as serviceWorker from './serviceWorker';
 /** modify the product type to letter case and swith '_' with spaces */
 const productListDeduped = data.products
   .filter( (product, index, self) => index === self.findIndex( productDupe => product.name === productDupe.name) )
+  .sort( (curr, next) => (curr.name.toLowerCase() > next.name.toLowerCase()) ? 1 : (curr.name.toLowerCase() < next.name.toLowerCase()) ? -1 : 0)
   .map( product => {
     return {
       name: product.name,

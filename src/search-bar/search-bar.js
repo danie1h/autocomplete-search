@@ -23,15 +23,17 @@ export const SearchBar = (props) => {
     let searchPattern = new RegExp(`^${props.escapedSearchInput}`, `i`)
 
     if(props.escapedSearchInput && props.filterOn === `All`) {
-      productNameMatches = props.productList.filter( (product, index) => searchPattern.test(product.name) === true).filter( (product, index) => index < 10 ).map( (product, index) => {
-        return (<option key={index} value={product.name} />)
-      })
+      productNameMatches = props.productList.filter( (product, index) => searchPattern.test(product.name) === true)
+        .filter( (product, index) => index < 10 )
+        .map( (product, index) => {
+          return (<option key={index} value={product.name} />)
+        })
     } else if(props.escapedSearchInput && props.filterOn !== `ALL`) {
-      productNameMatches = props.productList.filter( (product, index) => searchPattern.test(product.name) === true && product.type === props.filterOn).filter( (product, index) => index < 10 ).map( (product, index) => {
-        return (<option key={index} value={product.name} />)
-      })
-    } else {
-      productNameMatches = []
+      productNameMatches = props.productList.filter( (product, index) => searchPattern.test(product.name) === true && product.type === props.filterOn)
+        .filter( (product, index) => index < 10 )
+        .map( (product, index) => {
+          return (<option key={index} value={product.name} />)
+        })
     }
 
     return (
