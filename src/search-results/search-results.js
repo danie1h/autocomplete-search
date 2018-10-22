@@ -14,7 +14,7 @@ import './search-results.css'
   */
 export const SearchResults = (props) => {
     let productMatchedResults = []
-    let searchResultsPattern = new RegExp(`^${props.escapedSearchInput}`, `i`)
+    let searchResultsPattern = new RegExp(`${props.escapedSearchInput}`, `i`)
 
     if(props.escapedSearchInput && props.filterOn === 'All') {
       productMatchedResults = props.productList.filter( product => searchResultsPattern.test(product.name) === true)
