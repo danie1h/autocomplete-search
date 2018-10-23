@@ -4,5 +4,7 @@
 }
 
 .search-input {
+  height: 2em;
   width: 30em;
+  border-radius: .25em;
 }

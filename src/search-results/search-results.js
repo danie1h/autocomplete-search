@@ -20,22 +20,26 @@ export const SearchResults = (props) => {
       productMatchedResults = props.productList.filter( product => searchResultsPattern.test(product.name) === true)
        .map( (product, index) => {
          return (
-           <li key={index}>
-             <p className="result-name"><a href={product.url} target='_blank' rel='noopener noreferrer'>{product.name}</a></p>
-             <p className="result-type"><strong>Institution Type:</strong> {product.type}</p>
-             <p className="result-url">{product.url}</p>
-           </li>
+           <a href={product.url} target='_blank' rel='noopener noreferrer'>
+             <li key={index}>
+               <p className="result-name">{product.name}</p>
+               <p className="result-type"><strong>Institution Type:</strong> {product.type}</p>
+               <p className="result-url">{product.url}</p>
+             </li>
+           </a>
          )
        })
     } else if (props.escapedSearchInput && props.filterOn !== `ALL`) {
       productMatchedResults = props.productList.filter( product => searchResultsPattern.test(product.name) === true && product.type === props.filterOn)
           .map( (product, index) => {
             return (
-              <li key={index}>
-                <p className="result-name"><a href={product.url} target='_blank' rel='noopener noreferrer'>{product.name}</a></p>
-                <p className="result-type"><strong>Institution Type:</strong> {product.type}</p>
-                <p className="result-url">{product.url}</p>
-              </li>
+              <a href={product.url} target='_blank' rel='noopener noreferrer'>
+                <li key={index}>
+                    <p className="result-name"><a href={product.url} target='_blank' rel='noopener noreferrer'>{product.name}</a></p>
+                    <p className="result-type"><strong>Institution Type:</strong> {product.type}</p>
+                    <p className="result-url">{product.url}</p>
+                </li>
+              </a>
             )
           })
     }
@@ -43,8 +47,9 @@ export const SearchResults = (props) => {
     return (
       <div className='search-results'>
         <h2>Search Results</h2>
+        <hr />
         { (productMatchedResults.length === 0) ?
-            <p>Product does not exist. Please search for another product.</p>
+            <p className='invalid-search'>Product does not exist. Please search for another product.</p>
             :
             <div className='successful-results'>
               <ul>

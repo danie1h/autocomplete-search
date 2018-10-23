@@ -20,7 +20,7 @@ import './search-bar.css'
   */
 export const SearchBar = (props) => {
     let productNameMatches = []
-    let searchPattern = new RegExp(`${props.escapedSearchInput}`, `i`)
+    let searchPattern = (props.searchInput.length > 1) ? new RegExp(`${props.escapedSearchInput}`, `i`) : new RegExp(`^${props.escapedSearchInput}`, `i`)
 
     if(props.escapedSearchInput && props.filterOn === `All`) {
       productNameMatches = props.productList.filter( (product, index) => searchPattern.test(product.name) === true)

@@ -1,5 +1,12 @@
 .search-results h2 {
   color: gray;
+  margin-bottom: 0;
+}
+
+.search-results hr {
+  margin: 0;
+  width: 33em;
+  color: gray;
 }
 
 .successful-results ul {
@@ -11,12 +18,25 @@
   margin: 1em;
 }
 
+.invalid-search {
+  margin: 1em;
+}
+
 .successful-results li p {
   margin: 0;
 }
 
+.successful-results a {
+  text-decoration: none;
+}
+
+.result-name {
+  text-decoration: underline;
+}
+
 .result-type {
   font-size: .8em;
+  color: black;
 }
 
 .result-url {
