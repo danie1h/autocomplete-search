@@ -20,8 +20,8 @@ export const SearchResults = (props) => {
       productMatchedResults = props.productList.filter( product => searchResultsPattern.test(product.name) === true)
        .map( (product, index) => {
          return (
-           <a href={product.url} target='_blank' rel='noopener noreferrer'>
-             <li key={index}>
+           <a href={product.url} key={index} target='_blank' rel='noopener noreferrer'>
+             <li>
                <p className="result-name">{product.name}</p>
                <p className="result-type"><strong>Institution Type:</strong> {product.type}</p>
                <p className="result-url">{product.url}</p>
@@ -33,9 +33,9 @@ export const SearchResults = (props) => {
       productMatchedResults = props.productList.filter( product => searchResultsPattern.test(product.name) === true && product.type === props.filterOn)
           .map( (product, index) => {
             return (
-              <a href={product.url} target='_blank' rel='noopener noreferrer'>
-                <li key={index}>
-                    <p className="result-name"><a href={product.url} target='_blank' rel='noopener noreferrer'>{product.name}</a></p>
+              <a href={product.url} key={index} target='_blank' rel='noopener noreferrer'>
+                <li>
+                    <p className="result-name">{product.name}</p>
                     <p className="result-type"><strong>Institution Type:</strong> {product.type}</p>
                     <p className="result-url">{product.url}</p>
                 </li>

@@ -20,6 +20,8 @@ const productListDeduped = data.products
       }
   })
 
-ReactDOM.render(<App productList={productListDeduped}/>, document.getElementById('root'));
+const uniqueProductTypes = ['All', ...productListDeduped.map(product => product.type).filter( (type, index, self) => self.indexOf(type) === index ).sort()]
+
+ReactDOM.render(<App productList={productListDeduped} productTypes={uniqueProductTypes}/>, document.getElementById('root'));
 
 serviceWorker.unregister();

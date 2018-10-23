@@ -80,7 +80,7 @@ class App extends Component {
       <div className='auto-search-app'>
         <h1>Financial Institution Search</h1>
         <div className='search-section'>
-          <SearchFilter onChange={this.updateFilterType} productTypes={['All', ...this.props.productList.map(product => product.type).filter( (type, index, self) => self.indexOf(type) === index ).sort()]}/>
+          <SearchFilter onChange={this.updateFilterType} productTypes={this.props.productTypes}/>
           <SearchBar searchInput={this.state.searchInput} escapedSearchInput={this.state.escapedSearchInput} filterOn={this.state.filterType} handleChange={this.updateSearchInput} productList={this.props.productList} handleSubmit={this.handleSubmit}/>
         </div>
         { (this.state.submitted) ? <SearchResults searchInput={this.state.searchInput} escapedSearchInput={this.state.escapedSearchInput} filterOn={this.state.filterType} productList={this.props.productList}/> : '' }
